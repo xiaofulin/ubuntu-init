@@ -28,7 +28,21 @@ GRUB_CMDLINE_LINUX="" 改为 GRUB_CMDLINE_LINUX="net.ifnames=0 biosdevname=0"
 grub-mkconfig -o /boot/grub/grub.cfg
 
 #3. 修改网络配置文件中的ens32为eth0
-vim /etc/netplan/01-netcfg.yaml
+vim /etc/netplan/00-installer-config.yaml
+
+# This is the network config written by 'subiquity'
+network:
+  ethernets:
+    eth0:
+      dhcp4: false
+      optional: true
+      addresses: [192.168.12.20/24]
+      gateway4: 192.168.12.2
+      nameservers:
+              addresses: [192.168.12.3,114.114.114.114]
+  version: 2
+
+
 
 #4. 重启
 reboot
