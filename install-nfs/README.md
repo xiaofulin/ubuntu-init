@@ -1,4 +1,5 @@
 ```shell
+#1.安装nfs服务
 server:
 
 sudo apt install nfs-kernel-server
@@ -13,7 +14,7 @@ exportfs -a
 sudo systemctl restart nfs-kernel-server
 ufw disable 
 
-
+#2.客户端挂载nfs服务
 client:
 mkdir -p /data/nfs
 
@@ -23,4 +24,5 @@ vi /etc/fstab
 192.168.1.61:/data/nfs /data/nfs nfs defaults 0 0
 
 mount -a
+
 ```
